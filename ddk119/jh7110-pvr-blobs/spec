@@ -1,0 +1,3 @@
+VER=1.19.6345021+git20230619
+SRCS="tbl::https://github.com/starfive-tech/soft_3rdpart/raw/933b1814f1654614d7632faec57a3da6dfe51e36/IMG_GPU/out/img-gpu-powervr-bin-1.19.6345021.tar.gz"
+CHKSUMS="sha256::c283ef91fbd157171e04421edbd52e2b3cbcdb9df56c09fa9de6ceba68e663f2"
