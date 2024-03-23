@@ -1,8 +1,17 @@
 diff --git a/src/armada_bufmgr.c b/src/armada_bufmgr.c
-index 10b537c..0b7dee8 100644
+index 10b537c..53fadf8 100644
 --- a/src/armada_bufmgr.c
 +++ b/src/armada_bufmgr.c
-@@ -265,6 +265,7 @@ static struct armada_bo *drm_armada_bo_lookup_or_create(
+@@ -21,6 +21,8 @@
+     (type *)( (char *)__mptr - offsetof(type,member) );})
+ #endif
+ 
++# define _X_EXPORT      __attribute__((visibility("default")))
++
+ /* The interval in seconds between cache cleans */
+ #define BO_CACHE_CLEAN_INTERVAL	1
+ /* The maximum age in seconds of a BO in the cache */
+@@ -265,6 +267,7 @@ static struct armada_bo *drm_armada_bo_lookup_or_create(
      return bo;
  }
  
@@ -10,7 +19,7 @@ index 10b537c..0b7dee8 100644
  struct drm_armada_bo *drm_armada_bo_create_from_name(struct drm_armada_bufmgr *mgr,
      uint32_t name)
  {
-@@ -299,6 +300,7 @@ struct drm_armada_bo *drm_armada_bo_create_from_name(struct drm_armada_bufmgr *m
+@@ -299,6 +302,7 @@ struct drm_armada_bo *drm_armada_bo_create_from_name(struct drm_armada_bufmgr *m
      return &bo->bo;
  }
  
@@ -18,7 +27,7 @@ index 10b537c..0b7dee8 100644
  struct drm_armada_bo *drm_armada_bo_from_fd(struct drm_armada_bufmgr *mgr,
      int prime_fd)
  {
-@@ -323,6 +325,7 @@ struct drm_armada_bo *drm_armada_bo_from_fd(struct drm_armada_bufmgr *mgr,
+@@ -323,6 +327,7 @@ struct drm_armada_bo *drm_armada_bo_from_fd(struct drm_armada_bufmgr *mgr,
      return &bo->bo;
  }
  
@@ -26,7 +35,7 @@ index 10b537c..0b7dee8 100644
  struct drm_armada_bo *drm_armada_bo_dumb_create(struct drm_armada_bufmgr *mgr,
      unsigned w, unsigned h, unsigned bpp)
  {
-@@ -359,12 +362,14 @@ struct drm_armada_bo *drm_armada_bo_dumb_create(struct drm_armada_bufmgr *mgr,
+@@ -359,12 +364,14 @@ struct drm_armada_bo *drm_armada_bo_dumb_create(struct drm_armada_bufmgr *mgr,
      return &bo->bo;
  }
  
@@ -41,7 +50,7 @@ index 10b537c..0b7dee8 100644
  void drm_armada_bo_put(struct drm_armada_bo *dbo)
  {
      struct armada_bo *bo = to_armada_bo(dbo);
-@@ -377,6 +382,7 @@ void drm_armada_bo_put(struct drm_armada_bo *dbo)
+@@ -377,6 +384,7 @@ void drm_armada_bo_put(struct drm_armada_bo *dbo)
      }
  }
  
@@ -49,7 +58,7 @@ index 10b537c..0b7dee8 100644
  int drm_armada_bo_flink(struct drm_armada_bo *dbo, uint32_t *name)
  {
      struct armada_bo *bo = to_armada_bo(dbo);
-@@ -400,6 +406,7 @@ int drm_armada_bo_flink(struct drm_armada_bo *dbo, uint32_t *name)
+@@ -400,6 +408,7 @@ int drm_armada_bo_flink(struct drm_armada_bo *dbo, uint32_t *name)
      return 0;
  }
  
@@ -57,7 +66,7 @@ index 10b537c..0b7dee8 100644
  int drm_armada_bo_to_fd(struct drm_armada_bo *dbo, int *prime_fd)
  {
      struct armada_bo *bo = to_armada_bo(dbo);
-@@ -411,6 +418,7 @@ int drm_armada_bo_to_fd(struct drm_armada_bo *dbo, int *prime_fd)
+@@ -411,6 +420,7 @@ int drm_armada_bo_to_fd(struct drm_armada_bo *dbo, int *prime_fd)
      return 0;
  }
  
@@ -65,7 +74,7 @@ index 10b537c..0b7dee8 100644
  int drm_armada_bo_map(struct drm_armada_bo *dbo)
  {
      struct armada_bo *bo = to_armada_bo(dbo);
-@@ -445,6 +453,7 @@ int drm_armada_bo_map(struct drm_armada_bo *dbo)
+@@ -445,6 +455,7 @@ int drm_armada_bo_map(struct drm_armada_bo *dbo)
      return 0;
  }
  
@@ -73,7 +82,7 @@ index 10b537c..0b7dee8 100644
  int drm_armada_cache_reap(struct drm_armada_bufmgr *mgr)
  {
      struct timespec time;
-@@ -458,6 +467,7 @@ int drm_armada_cache_reap(struct drm_armada_bufmgr *mgr)
+@@ -458,6 +469,7 @@ int drm_armada_cache_reap(struct drm_armada_bufmgr *mgr)
      return !DRMLISTEMPTY(&mgr->cache.head);
  }
  
@@ -81,7 +90,7 @@ index 10b537c..0b7dee8 100644
  int drm_armada_init(int fd, struct drm_armada_bufmgr **mgrp)
  {
      struct drm_armada_bufmgr *mgr;
-@@ -485,6 +495,7 @@ int drm_armada_init(int fd, struct drm_armada_bufmgr **mgrp)
+@@ -485,6 +497,7 @@ int drm_armada_init(int fd, struct drm_armada_bufmgr **mgrp)
      return 0;
  }
  
