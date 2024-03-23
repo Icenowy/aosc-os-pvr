@@ -1,0 +1,3 @@
+VER=1.17.6210866+sdk1.4.2
+SRCS="tbl::https://mirror.iscas.ac.cn/revyos/revyos-gles-21/pool/main/t/thead-gles-addons/thead-gles-addons_1.17%2Bsdk1.4.2.tar.xz"
+CHKSUMS="sha256::d6379b22ce09ed29fd58877a4c44f6d31dced0bcb17fd8577b7336c31a5bfa12"
