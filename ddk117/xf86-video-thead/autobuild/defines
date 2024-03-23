@@ -2,3 +2,6 @@ PKGNAME=xf86-video-thead
 PKGDES="DDX for T-Head TH1520 SoC"
 PKGSEC=x11
 PKGDEP="xorg-server"
+
+ABTYPE=autotools
+ABSHADOW=0
