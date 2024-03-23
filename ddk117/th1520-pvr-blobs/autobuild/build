@@ -8,6 +8,6 @@ chmod -v 755 "$PKGDIR"/usr/lib/lib*.so
 
 abinfo "Installing ICD descriptors ..."
 mkdir -p "$PKGDIR"/usr/share/vulkan/icd.d
-cp -v "$SRCDIR"/etc/vulkan/icd.d/icdconf.json "$PKGDIR"/usr/share/vulkan/icd.d/pvr.json
+cp -v "$SRCDIR"/addons/etc/vulkan/icd.d/icdconf.json "$PKGDIR"/usr/share/vulkan/icd.d/pvr.json
 mkdir -p "$PKGDIR"/etc/OpenCL/vendors
-cp -v "$SRCDIR"/etc/OpenCL/vendors/IMG.cd "$PKGDIR"/etc/OpenCL/vendors/
+cp -v "$SRCDIR"/addons/etc/OpenCL/vendors/IMG.cd "$PKGDIR"/etc/OpenCL/vendors/
