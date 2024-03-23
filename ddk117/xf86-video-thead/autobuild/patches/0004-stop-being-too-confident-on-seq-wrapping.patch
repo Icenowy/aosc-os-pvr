@@ -1,0 +1,64 @@
+From 676382e936bc52613b664286ebe07ec74db2ecca Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Tue, 19 Mar 2024 20:05:23 +0800
+Subject: [PATCH 4/4] stop being too confident on seq wrapping
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ src/common_drm.c | 22 ++--------------------
+ src/common_drm.h |  2 --
+ 2 files changed, 2 insertions(+), 22 deletions(-)
+
+diff --git a/src/common_drm.c b/src/common_drm.c
+index ca0d54a..c026b1b 100644
+--- a/src/common_drm.c
++++ b/src/common_drm.c
+@@ -85,30 +85,12 @@ void *common_drm_get_pixmap_data(PixmapPtr pixmap)
+ 
+ static uint64_t common_drm_frame_to_msc(xf86CrtcPtr crtc, uint32_t seq)
+ {
+-	struct common_crtc_info *drmc = common_crtc(crtc);
+-
+-	/*
+-	 * The sequence counter wrapped.  Unlike the misleading comments in
+-	 * xf86-video-intel, the vblank counter is never wound backwards: it
+-	 * always runs forwards.  However, since we don't monitor it with
+-	 * any regularity, it can appear to go backwards if we wait (eg)
+-	 * 0xc0000000 vblanks between calls.  Hence, whenever we see the
+-	 * frame sequence less than the last sequence, assume that it has
+-	 * wrapped.  (It may have wrapped more than once.)
+-	 */
+-	if (seq < drmc->last_seq)
+-		drmc->last_msc += 0x100000000ULL;
+-
+-	drmc->last_seq = seq;
+-
+-	return drmc->last_msc + seq;
++	return seq;
+ }
+ 
+ static uint32_t common_drm_msc_to_frame(xf86CrtcPtr crtc, uint64_t msc)
+ {
+-	struct common_crtc_info *drmc = common_crtc(crtc);
+-
+-	return msc - drmc->last_msc;
++	return (uint32_t) msc;
+ }
+ 
+ /*
+diff --git a/src/common_drm.h b/src/common_drm.h
+index 2267190..35d8b18 100644
+--- a/src/common_drm.h
++++ b/src/common_drm.h
+@@ -21,8 +21,6 @@ struct common_crtc_info {
+ 	void *cursor_data;
+ 	uint32_t cursor_handle;
+ 	uint32_t rotate_fb_id;
+-	uint32_t last_seq;
+-	uint64_t last_msc;
+ 	uint64_t swap_msc;
+ 	uint64_t swap_ust;
+ 	Bool has_cursor2;
+-- 
+2.44.0
+

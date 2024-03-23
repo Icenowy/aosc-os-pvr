@@ -1,0 +1,3 @@
+VER=1.0.1+git20240316
+SRCS="git::commit=5f24e097cc2e15ebaabd3d0460670d9692f83a52::https://github.com/revyos/xf86-video-thead"
+CHKSUMS="SKIP"
