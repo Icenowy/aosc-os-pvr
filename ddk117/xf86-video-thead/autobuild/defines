@@ -5,3 +5,5 @@ PKGDEP="xorg-server"
 
 ABTYPE=autotools
 ABSHADOW=0
+
+AUTOTOOLS_AFTER="--disable-dri2"
