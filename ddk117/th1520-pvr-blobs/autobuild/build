@@ -10,4 +10,4 @@ abinfo "Installing ICD descriptors ..."
 mkdir -p "$PKGDIR"/usr/share/vulkan/icd.d
 cp -v "$SRCDIR"/addons/etc/vulkan/icd.d/icdconf.json "$PKGDIR"/usr/share/vulkan/icd.d/pvr.json
 mkdir -p "$PKGDIR"/etc/OpenCL/vendors
-cp -v "$SRCDIR"/addons/etc/OpenCL/vendors/IMG.cd "$PKGDIR"/etc/OpenCL/vendors/
+cp -v "$SRCDIR"/addons/etc/OpenCL/vendors/IMG.icd "$PKGDIR"/etc/OpenCL/vendors/
