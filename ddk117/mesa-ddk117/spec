@@ -1,0 +1,3 @@
+VER=21.2.1+2revyos2+glvnd
+SRCS="git::commit=aa33b87be4483997c3f584dce5c4288d22c96be9::https://github.com/revyos/mesa.git"
+CHKSUMS="SKIP"

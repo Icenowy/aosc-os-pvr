@@ -1,0 +1,16 @@
+abinfo "Configuring ..."
+mkdir -pv "$SRCDIR"/abbuild
+cd "$SRCDIR"/abbuild
+
+meson setup "$SRCDIR" --prefix=/usr -Ddri-drivers-path=/usr/lib/pvr-dri \
+        -Dglvnd=true -Dglvnd-vendor-name=pvr \
+        -Ddri-drivers=pvr -Dvulkan-drivers=pvr -Dgallium-drivers= \
+        -Dglx=disabled -Dllvm=disabled
+
+abinfo "Building ..."
+ninja -C "$SRCDIR"/abbuild
+
+abinfo "Installing ..."
+mkdir -pv "$PKGDIR"/usr/lib
+DESTDIR="$SRCDIR"/tmp ninja -C "$SRCDIR"/abbuild install
+cp -av "$SRCDIR"/tmp/usr/lib/*pvr* "$PKGDIR"/usr/lib/

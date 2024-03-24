@@ -1,0 +1,43 @@
+From 04c8a1739b77805bca3361a5a875410d7a0e5084 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Sun, 24 Mar 2024 15:10:57 +0800
+Subject: [PATCH 2/2] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ src/egl/drivers/dri2/platform_device.c | 2 +-
+ src/egl/main/eglapi.c                  | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/egl/drivers/dri2/platform_device.c b/src/egl/drivers/dri2/platform_device.c
+index 3d979e982a5..0dfd5338832 100644
+--- a/src/egl/drivers/dri2/platform_device.c
++++ b/src/egl/drivers/dri2/platform_device.c
+@@ -252,7 +252,7 @@ static bool
+ device_probe_device(_EGLDisplay *disp)
+ {
+    struct dri2_egl_display *dri2_dpy = dri2_egl_display(disp);
+-   bool request_software = env_var_as_boolean("LIBGL_ALWAYS_SOFTWARE", false);
++   bool request_software = env_var_as_boolean("PVRGL_ALWAYS_SOFTWARE", false);
+ 
+    if (request_software)
+       _eglLog(_EGL_WARNING, "Not allowed to force software rendering when "
+diff --git a/src/egl/main/eglapi.c b/src/egl/main/eglapi.c
+index 1cbff9656e4..de2c7ea3fcb 100644
+--- a/src/egl/main/eglapi.c
++++ b/src/egl/main/eglapi.c
+@@ -636,9 +636,9 @@ eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor)
+    if (!disp->Initialized) {
+       /* set options */
+       disp->Options.ForceSoftware =
+-         env_var_as_boolean("LIBGL_ALWAYS_SOFTWARE", false);
++         env_var_as_boolean("PVRGL_ALWAYS_SOFTWARE", false);
+       if (disp->Options.ForceSoftware)
+-         _eglLog(_EGL_DEBUG, "Found 'LIBGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
++         _eglLog(_EGL_DEBUG, "Found 'PVRGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
+ 
+       /**
+        * Initialize the display using the driver's function.
+-- 
+2.44.0
+
