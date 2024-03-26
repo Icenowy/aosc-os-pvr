@@ -1,0 +1,3 @@
+abinfo "Installing Xorg config file for T-Head DDX ..."
+mkdir -pv "$PKGDIR"/usr/share/X11/xorg.conf.d
+cp -v "$SRCDIR"/conf/thead.conf "$PKGDIR"/usr/share/X11/xorg.conf.d/
