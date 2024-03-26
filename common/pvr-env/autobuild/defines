@@ -1,0 +1,9 @@
+PKGNAME=pvr-env
+PKGDES="Environment variables preset for better adaption of PowerVR GPUs"
+PKGSEC=misc
+PKGDEP="bash-startup"
+PKGRECOM="mesa-ddk117|mesa-ddk119"
+
+ABHOST=noarch
+ABTYPE=dummy
+VER_NONE=1
