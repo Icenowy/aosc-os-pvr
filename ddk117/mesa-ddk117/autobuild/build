@@ -5,7 +5,7 @@ cd "$SRCDIR"/abbuild
 meson setup "$SRCDIR" --prefix=/usr -Ddri-drivers-path=/usr/lib/pvr-dri \
         -Dglvnd=true -Dglvnd-vendor-name=pvr \
         -Ddri-drivers=pvr -Dvulkan-drivers=pvr -Dgallium-drivers= \
-        -Dglx=disabled -Dllvm=disabled
+        -Dglx=disabled -Dllvm=disabled -Dgbm=enabled
 
 abinfo "Building ..."
 ninja -C "$SRCDIR"/abbuild
@@ -14,4 +14,5 @@ abinfo "Installing ..."
 mkdir -pv "$PKGDIR"/usr/lib "$PKGDIR"/usr/share/glvnd/egl_vendor.d
 DESTDIR="$SRCDIR"/tmp ninja -C "$SRCDIR"/abbuild install
 cp -av "$SRCDIR"/tmp/usr/lib/*pvr* "$PKGDIR"/usr/lib/
+cp -rv "$SRCDIR"/tmp/usr/lib/gbm "$PKGDIR"/usr/lib/
 cp -v "$SRCDIR"/tmp/usr/share/glvnd/egl_vendor.d/50_pvr.json "$PKGDIR"/usr/share/glvnd/egl_vendor.d/
