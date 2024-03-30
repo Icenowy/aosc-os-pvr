@@ -1,7 +1,7 @@
-From e7a7ee27d09c79038f5a3772f6d5148d56a15af2 Mon Sep 17 00:00:00 2001
+From 1d457fb28459dd6020d2951bebf24301a70626b2 Mon Sep 17 00:00:00 2001
 From: Frank Binns <frank.binns@imgtec.com>
 Date: Thu, 5 Jun 2014 12:07:01 +0100
-Subject: [PATCH 02/58] dri: Add some new DRI formats and fourccs
+Subject: [PATCH 02/63] dri: Add some new DRI formats and fourccs
 
 Add ARGB4444 DRI format and fourcc.
 Add YVU444_PACK10_IMG DRI format and fourcc.
@@ -76,5 +76,5 @@ index b562572a15f..abc84a22ac6 100644
        .image_format    = __DRI_IMAGE_FORMAT_XRGB8888,
        .mesa_format     =        MESA_FORMAT_B8G8R8X8_UNORM,
 -- 
-2.25.1
+2.44.0
 
