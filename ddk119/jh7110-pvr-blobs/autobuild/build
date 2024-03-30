@@ -11,7 +11,6 @@ done
 
 abinfo "Copying auxillary files ..."
 cp -rv "$SRCDIR"/target/lib/firmware/ "$PKGDIR"/usr/lib/
-cp -rv "$SRCDIR"/target/usr/local/bin/ "$PKGDIR"/usr/
 cp -rv "$SRCDIR"/target/etc/vulkan/ "$PKGDIR"/usr/share/
 cp -rv "$SRCDIR"/target/etc/OpenCL/ "$PKGDIR"/etc/
 

@@ -1,9 +1,10 @@
 PKGNAME=jh7110-pvr-blobs
 PKGDES="Blobs built from PowerVR DDK for JH7110"
 PKGSEC=non-free/libs
+PKGCONFL="pvr-blob-ddk1.17"
+PKGPROV="pvr-blob-ddk1.19"
 
-# The files should be stripped by StarFive, and we have no permission to change them
-ABSTRIP=0
 ABSPLITDBG=0
+ABSTRIP=0
 
 FAIL_ARCH="!(riscv64)"
