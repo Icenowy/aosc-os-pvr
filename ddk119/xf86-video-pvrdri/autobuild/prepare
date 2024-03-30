@@ -1,0 +1,1 @@
+cp -r "$SRCDIR"/autobuild/src/* "$SRCDIR"/

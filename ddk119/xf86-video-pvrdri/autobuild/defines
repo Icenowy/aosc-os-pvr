@@ -1,0 +1,6 @@
+PKGNAME=xf86-video-pvrdri
+PKGDES="DDX for KMS devices accelerated by PowerVR GPUs (Mesa DRI drivers)"
+PKGSEC=x11
+PKGDEP="xorg-server mesa libdrm libepoxy"
+
+ABTYPE=meson
