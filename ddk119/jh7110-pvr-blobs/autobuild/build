@@ -16,4 +16,4 @@ mv -v "$PKGDIR"/usr/share/vulkan/icd.d/{icdconf,pvr}.json
 cp -rv "$SRCDIR"/target/etc/OpenCL/ "$PKGDIR"/etc/
 
 abinfo "Fixing permissions ..."
-chmod -v 755 "$PKGDIR"/usr/lib/lib*.so.1.*
+chmod -v 755 "$PKGDIR"/usr/lib/lib*.so
