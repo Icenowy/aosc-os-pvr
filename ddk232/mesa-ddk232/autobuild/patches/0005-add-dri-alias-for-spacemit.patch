@@ -1,0 +1,39 @@
+From 7f40709f727b85956d4e5a75ab2c6c2cc9ea2f31 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Fri, 19 Jul 2024 16:14:29 +0800
+Subject: [PATCH 5/5] add dri alias for spacemit
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ src/gallium/targets/dri/meson.build | 2 +-
+ src/gallium/targets/dri/target.c    | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/gallium/targets/dri/meson.build b/src/gallium/targets/dri/meson.build
+index 1fd98bc..4ef7a07 100644
+--- a/src/gallium/targets/dri/meson.build
++++ b/src/gallium/targets/dri/meson.build
+@@ -116,7 +116,7 @@ foreach d : [[with_gallium_kmsro, [
+              [with_gallium_zink, 'zink_dri.so'],
+              [with_gallium_d3d12, 'd3d12_dri.so'],
+              [with_gallium_asahi, 'asahi_dri.so'],
+-             [with_gallium_pvr, 'pvr_dri.so'],
++             [with_gallium_pvr, ['pvr_dri.so', 'spacemit_dri.so'] ],
+              [with_gallium_pvr_alias, gallium_pvr_alias + '_dri.so']]
+   if d[0]
+     gallium_dri_drivers += d[1]
+diff --git a/src/gallium/targets/dri/target.c b/src/gallium/targets/dri/target.c
+index e66bdaa..7bb0b65 100644
+--- a/src/gallium/targets/dri/target.c
++++ b/src/gallium/targets/dri/target.c
+@@ -157,6 +157,7 @@ DEFINE_LOADER_DRM_ENTRYPOINT(d3d12);
+ 
+ #if defined(GALLIUM_PVR)
+ DEFINE_LOADER_PVR_ENTRYPOINT(pvr);
++DEFINE_LOADER_PVR_ENTRYPOINT(spacemit);
+ #endif
+ 
+ #if defined(GALLIUM_PVR_ALIAS)
+-- 
+2.45.2
+
