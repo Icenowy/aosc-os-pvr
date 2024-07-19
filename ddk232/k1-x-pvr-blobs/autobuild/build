@@ -13,7 +13,6 @@ abinfo "Copying auxillary files ..."
 cp -rv "$SRCDIR"/target/lib/firmware/ "$PKGDIR"/usr/lib/
 cp -rv "$SRCDIR"/target/etc/vulkan/ "$PKGDIR"/usr/share/
 mv -v "$PKGDIR"/usr/share/vulkan/icd.d/{powervr_icd,pvr}.json
-cp -rv "$SRCDIR"/target/etc/OpenCL/ "$PKGDIR"/etc/
 
 abinfo "Fixing permissions ..."
 chmod -v 755 "$PKGDIR"/usr/lib/lib*.so
