@@ -1,2 +1,3 @@
-VER=1.0.0~pre
-DUMMYSRC=1
+VER=0+git20241213
+SRCS="git::commit=d7aea15f1fefc10e6107d9a1b01b8ffd87dc62d6::https://github.com/Icenowy/xf86-video-pvrdri.git"
+CHKSUMS="SKIP"
