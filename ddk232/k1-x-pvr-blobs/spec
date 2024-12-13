@@ -1,3 +1,0 @@
-VER=23.2.6460340+bianbu1.0.13
-SRCS="git::commit=cf1feb609c0deafab2a2959a1ae7262e07364b23::https://gitee.com/bianbu-linux/img-gpu-powervr.git"
-CHKSUMS="SKIP"

@@ -1,4 +1,4 @@
-From c3c2b0d4092069a6dc7b6c5bbce2e0543342bd59 Mon Sep 17 00:00:00 2001
+From d0e0bb44f3a53f8d1d63560b82dfd88e239a728e Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sun, 24 Mar 2024 15:01:44 +0800
 Subject: [PATCH 1/5] redirect glapi
@@ -10,7 +10,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  2 files changed, 22 insertions(+), 1 deletion(-)
 
 diff --git a/src/mapi/glapi/glapi.h b/src/mapi/glapi/glapi.h
-index d51ba0f..eb25973 100644
+index cc0a95a6..c18e48ac 100644
 --- a/src/mapi/glapi/glapi.h
 +++ b/src/mapi/glapi/glapi.h
 @@ -48,6 +48,27 @@
@@ -42,18 +42,18 @@ index d51ba0f..eb25973 100644
  #ifdef __cplusplus
  extern "C" {
 diff --git a/src/mapi/shared-glapi/meson.build b/src/mapi/shared-glapi/meson.build
-index 3db5646..7d86792 100644
+index 2cb93d77..6598faa9 100644
 --- a/src/mapi/shared-glapi/meson.build
 +++ b/src/mapi/shared-glapi/meson.build
-@@ -42,7 +42,7 @@ if with_platform_windows
+@@ -44,7 +44,7 @@ if with_platform_windows
  endif
  
  libglapi = shared_library(
 -  'glapi',
 +  'pvrglapi',
-   [files_mapi_glapi, files_mapi_util, shared_glapi_mapi_tmp_h],
+   [files_shared_glapi, shared_glapi_mapi_tmp_h],
    c_args : [
      _glapi_c_args,
 -- 
-2.45.2
+2.47.1
 

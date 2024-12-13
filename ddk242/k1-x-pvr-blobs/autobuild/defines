@@ -1,8 +1,8 @@
 PKGNAME=k1-x-pvr-blobs
 PKGDES="Blobs built from PowerVR DDK for SpacemiT K1"
 PKGSEC=non-free/libs
-PKGCONFL="pvr-blob-ddk1.17 pvr-blob-ddk1.19"
-PKGPROV="pvr-blob-ddk23.2"
+PKGCONFL="pvr-blob-ddk1.17 pvr-blob-ddk1.19 pvr-blob-ddk23.2"
+PKGPROV="pvr-blob-ddk24.2"
 
 ABSPLITDBG=0
 ABSTRIP=0

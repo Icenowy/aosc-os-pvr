@@ -1,9 +1,0 @@
-PKGNAME=mesa-ddk232
-PKGDES="Mesa wrapper for PVR DDK 23.2 blobs"
-PKGSEC=contrib/libs
-PKGDEP="libglvnd libdrm wayland x11-lib expat systemd"
-BUILDDEP="mako"
-PKGRECOM="pvr-blob-ddk23.2|k1-x-pvr-blobs"
-PKGCONFL="pvr-blob-ddk1.17 pvr-blob-ddk1.19"
-
-ABTYPE=self

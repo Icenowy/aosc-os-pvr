@@ -1,6 +1,6 @@
-From c2b11794a60424b2d0dfc276a0cdef1750f7c137 Mon Sep 17 00:00:00 2001
+From 63137832c807ed457b0d2d0c02015e9504198a12 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
-Date: Sun, 24 Mar 2024 15:10:57 +0800
+Date: Fri, 13 Dec 2024 13:41:30 +0800
 Subject: [PATCH 2/5] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
@@ -10,34 +10,35 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/src/egl/drivers/dri2/platform_device.c b/src/egl/drivers/dri2/platform_device.c
-index bd16f3f..73ee23f 100644
+index f9d91e4d..3b5daafd 100644
 --- a/src/egl/drivers/dri2/platform_device.c
 +++ b/src/egl/drivers/dri2/platform_device.c
-@@ -274,7 +274,7 @@ static bool
- device_probe_device(_EGLDisplay *disp)
+@@ -272,7 +272,7 @@ device_probe_device(_EGLDisplay *disp)
  {
     struct dri2_egl_display *dri2_dpy = dri2_egl_display(disp);
--   bool request_software = debug_get_bool_option("LIBGL_ALWAYS_SOFTWARE", false);
-+   bool request_software = debug_get_bool_option("PVRGL_ALWAYS_SOFTWARE", false);
+    bool request_software =
+-      debug_get_bool_option("LIBGL_ALWAYS_SOFTWARE", false);
++      debug_get_bool_option("PVRGL_ALWAYS_SOFTWARE", false);
  
     if (request_software)
        _eglLog(_EGL_WARNING, "Not allowed to force software rendering when "
 diff --git a/src/egl/main/eglapi.c b/src/egl/main/eglapi.c
-index b5064a3..b00f098 100644
+index c0e6197a..7be4c142 100644
 --- a/src/egl/main/eglapi.c
 +++ b/src/egl/main/eglapi.c
-@@ -691,9 +691,9 @@ eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor)
+@@ -679,10 +679,10 @@ eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor)
     if (!disp->Initialized) {
        /* set options */
        disp->Options.ForceSoftware =
 -         debug_get_bool_option("LIBGL_ALWAYS_SOFTWARE", false);
 +         debug_get_bool_option("PVRGL_ALWAYS_SOFTWARE", false);
        if (disp->Options.ForceSoftware)
--         _eglLog(_EGL_DEBUG, "Found 'LIBGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
-+         _eglLog(_EGL_DEBUG, "Found 'PVRGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
+          _eglLog(_EGL_DEBUG,
+-                 "Found 'LIBGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
++                 "Found 'PVRGL_ALWAYS_SOFTWARE' set, will use a CPU renderer");
  
        const char *env = getenv("MESA_LOADER_DRIVER_OVERRIDE");
        disp->Options.Zink = env && !strcmp(env, "zink");
 -- 
-2.45.2
+2.47.1
 
