@@ -1,0 +1,13 @@
+abinfo "Installing firmwares ..."
+mkdir -p "$PKGDIR"/usr/lib/firmware
+cp -v "$SRCDIR"/addons/lib/firmware/* "$PKGDIR"/usr/lib/firmware/
+
+abinfo "Installing libraries ..."
+cp -v "$SRCDIR"/addons/usr/lib/lib*.so "$PKGDIR"/usr/lib/
+chmod -v 755 "$PKGDIR"/usr/lib/lib*.so
+
+abinfo "Installing ICD descriptors ..."
+mkdir -p "$PKGDIR"/usr/share/vulkan/icd.d
+cp -v "$SRCDIR"/addons/etc/vulkan/icd.d/icdconf.json "$PKGDIR"/usr/share/vulkan/icd.d/pvr.json
+mkdir -p "$PKGDIR"/etc/OpenCL/vendors
+cp -v "$SRCDIR"/addons/etc/OpenCL/vendors/IMG.icd "$PKGDIR"/etc/OpenCL/vendors/

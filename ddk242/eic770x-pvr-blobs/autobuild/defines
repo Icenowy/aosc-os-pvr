@@ -1,0 +1,11 @@
+PKGNAME=eic770x-pvr-blobs
+PKGDES="PowerVR blobs from DDK 24.2 for Eswin EIC7700/7702(X)"
+PKGCONFL="pvr-blob-ddk24.2"
+PKGPROV="pvr-blob-ddk24.2"
+PKGSEC=non-free/libs
+
+ABSPLITDBG=0
+ABSTRIP=0
+ABTYPE=self
+
+FAIL_ARCH="!(riscv64)"
