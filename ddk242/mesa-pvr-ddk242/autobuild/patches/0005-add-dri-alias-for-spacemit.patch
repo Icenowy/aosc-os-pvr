@@ -1,7 +1,7 @@
 From c1b1c5f2dc3aaeaecc677dc78373aeef90b7e86a Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 19 Jul 2024 16:14:29 +0800
-Subject: [PATCH 5/5] add dri alias for spacemit
+Subject: [PATCH 5/5] add dri aliases
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -18,7 +18,7 @@ index 8b5d5999..0b90f064 100644
               [with_gallium_d3d12, 'd3d12_dri.so'],
               [with_gallium_asahi, 'asahi_dri.so'],
 -             [with_gallium_pvr, 'pvr_dri.so'],
-+             [with_gallium_pvr, ['pvr_dri.so', 'spacemit_dri.so'] ],
++             [with_gallium_pvr, ['pvr_dri.so', 'spacemit_dri.so', 'es_drm_dri.so'] ],
               [with_gallium_pvr_alias, gallium_pvr_alias + '_dri.so']]
    if d[0]
      gallium_dri_drivers += d[1]
@@ -26,11 +26,12 @@ diff --git a/src/gallium/targets/dri/target.c b/src/gallium/targets/dri/target.c
 index 645153b7..73314337 100644
 --- a/src/gallium/targets/dri/target.c
 +++ b/src/gallium/targets/dri/target.c
-@@ -164,6 +164,7 @@ DEFINE_LOADER_DRM_ENTRYPOINT(d3d12);
+@@ -164,6 +164,8 @@ DEFINE_LOADER_DRM_ENTRYPOINT(d3d12);
  
  #if defined(GALLIUM_PVR)
  DEFINE_LOADER_PVR_ENTRYPOINT(pvr);
 +DEFINE_LOADER_PVR_ENTRYPOINT(spacemit);
++DEFINE_LOADER_PVR_ENTRYPOINT(es_drm);
  #endif
  
  #if defined(GALLIUM_PVR_ALIAS)
