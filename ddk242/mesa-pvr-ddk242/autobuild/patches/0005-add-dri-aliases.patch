@@ -1,32 +1,32 @@
-From c1b1c5f2dc3aaeaecc677dc78373aeef90b7e86a Mon Sep 17 00:00:00 2001
+From 7a8d5e3d8571f4b13ee24c890e455d64a820e401 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 19 Jul 2024 16:14:29 +0800
-Subject: [PATCH 5/5] add dri aliases
+Subject: [PATCH 5/6] add dri aliases
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
  src/gallium/targets/dri/meson.build | 2 +-
- src/gallium/targets/dri/target.c    | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ src/gallium/targets/dri/target.c    | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/src/gallium/targets/dri/meson.build b/src/gallium/targets/dri/meson.build
-index 8b5d5999..0b90f064 100644
+index f9cccfd3d2c..e5f12526b50 100644
 --- a/src/gallium/targets/dri/meson.build
 +++ b/src/gallium/targets/dri/meson.build
-@@ -125,7 +125,7 @@ foreach d : [[with_gallium_kmsro, [
+@@ -126,7 +126,7 @@ foreach d : [[with_gallium_kmsro, [
               [with_gallium_zink, 'zink_dri.so'],
               [with_gallium_d3d12, 'd3d12_dri.so'],
               [with_gallium_asahi, 'asahi_dri.so'],
 -             [with_gallium_pvr, 'pvr_dri.so'],
 +             [with_gallium_pvr, ['pvr_dri.so', 'spacemit_dri.so', 'es_drm_dri.so'] ],
-              [with_gallium_pvr_alias, gallium_pvr_alias + '_dri.so']]
-   if d[0]
-     gallium_dri_drivers += d[1]
+              [with_gallium_pvr_alias, gallium_pvr_alias + '_dri.so'],
+              [with_gallium_sgx, ['sgx_dri.so', 'pvr_dri.so']],
+              [with_gallium_sgx_alias, gallium_sgx_alias + '_dri.so']]
 diff --git a/src/gallium/targets/dri/target.c b/src/gallium/targets/dri/target.c
-index 645153b7..73314337 100644
+index 3da378e571d..ff6fd25facc 100644
 --- a/src/gallium/targets/dri/target.c
 +++ b/src/gallium/targets/dri/target.c
-@@ -164,6 +164,8 @@ DEFINE_LOADER_DRM_ENTRYPOINT(d3d12);
+@@ -174,6 +174,8 @@ DEFINE_LOADER_DRM_ENTRYPOINT(d3d12);
  
  #if defined(GALLIUM_PVR)
  DEFINE_LOADER_PVR_ENTRYPOINT(pvr);
@@ -36,5 +36,5 @@ index 645153b7..73314337 100644
  
  #if defined(GALLIUM_PVR_ALIAS)
 -- 
-2.47.1
+2.49.0
 

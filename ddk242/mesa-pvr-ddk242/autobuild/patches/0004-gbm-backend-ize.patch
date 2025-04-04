@@ -1,7 +1,7 @@
-From 7dc6fdcc9d3b6759214132ec02a9398a01365fd2 Mon Sep 17 00:00:00 2001
+From 812412d19715e4396e859cff1242843fcd923bae Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 28 Mar 2024 16:04:31 +0800
-Subject: [PATCH 4/5] gbm: backend-ize
+Subject: [PATCH 4/6] gbm: backend-ize
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -11,7 +11,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  3 files changed, 29 insertions(+), 59 deletions(-)
 
 diff --git a/src/egl/meson.build b/src/egl/meson.build
-index e5302d8e..69f2f0ac 100644
+index e5302d8e3eb..69f2f0acbe9 100644
 --- a/src/egl/meson.build
 +++ b/src/egl/meson.build
 @@ -119,10 +119,10 @@ if with_dri2
@@ -28,7 +28,7 @@ index e5302d8e..69f2f0ac 100644
    if with_platform_wayland
      deps_for_egl += [dep_wayland_client, dep_wayland_server, dep_wayland_egl_headers]
 diff --git a/src/gbm/backends/dri/gbm_dri.c b/src/gbm/backends/dri/gbm_dri.c
-index 7ad7c782..ef35951c 100644
+index 7ad7c782cc3..ef35951c0bf 100644
 --- a/src/gbm/backends/dri/gbm_dri.c
 +++ b/src/gbm/backends/dri/gbm_dri.c
 @@ -62,6 +62,8 @@
@@ -147,7 +147,7 @@ index 7ad7c782..ef35951c 100644
 +    return &gbm_dri_backend;
 +}
 diff --git a/src/gbm/meson.build b/src/gbm/meson.build
-index 78bcc9b3..c5c628da 100644
+index 78bcc9b3fab..c5c628dafd2 100644
 --- a/src/gbm/meson.build
 +++ b/src/gbm/meson.build
 @@ -21,17 +21,10 @@
@@ -227,5 +227,5 @@ index 78bcc9b3..c5c628da 100644
 -  )
 -endif
 -- 
-2.47.1
+2.49.0
 

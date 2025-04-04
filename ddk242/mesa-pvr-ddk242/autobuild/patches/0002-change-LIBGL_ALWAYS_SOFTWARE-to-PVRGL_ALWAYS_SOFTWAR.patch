@@ -1,7 +1,7 @@
-From 63137832c807ed457b0d2d0c02015e9504198a12 Mon Sep 17 00:00:00 2001
+From 1fba42d7385f3f0ea9da2ac124b4c08ece34cf11 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Dec 2024 13:41:30 +0800
-Subject: [PATCH 2/5] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
+Subject: [PATCH 2/6] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -10,7 +10,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/src/egl/drivers/dri2/platform_device.c b/src/egl/drivers/dri2/platform_device.c
-index f9d91e4d..3b5daafd 100644
+index f9d91e4d6ae..3b5daafdf31 100644
 --- a/src/egl/drivers/dri2/platform_device.c
 +++ b/src/egl/drivers/dri2/platform_device.c
 @@ -272,7 +272,7 @@ device_probe_device(_EGLDisplay *disp)
@@ -23,7 +23,7 @@ index f9d91e4d..3b5daafd 100644
     if (request_software)
        _eglLog(_EGL_WARNING, "Not allowed to force software rendering when "
 diff --git a/src/egl/main/eglapi.c b/src/egl/main/eglapi.c
-index c0e6197a..7be4c142 100644
+index c0e6197a500..7be4c142538 100644
 --- a/src/egl/main/eglapi.c
 +++ b/src/egl/main/eglapi.c
 @@ -679,10 +679,10 @@ eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor)
@@ -40,5 +40,5 @@ index c0e6197a..7be4c142 100644
        const char *env = getenv("MESA_LOADER_DRIVER_OVERRIDE");
        disp->Options.Zink = env && !strcmp(env, "zink");
 -- 
-2.47.1
+2.49.0
 
