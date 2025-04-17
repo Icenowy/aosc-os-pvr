@@ -5,7 +5,7 @@ cd "$SRCDIR"/abbuild
 meson setup "$SRCDIR" --prefix=/usr -Ddri-drivers-path=/usr/lib/pvr-dri \
         -Dglvnd=true -Dglvnd-vendor-name=pvr \
         -Dgallium-drivers=pvr,zink -Dvulkan-drivers=pvr \
-        -Dglx=dri -Dllvm=disabled -Dgbm=enabled
+        -Dglx=disabled -Dllvm=disabled -Dgbm=enabled
 
 abinfo "Building ..."
 ninja -C "$SRCDIR"/abbuild
