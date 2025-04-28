@@ -1,7 +1,7 @@
-From 89a7c3296d0bb11bb1d5f1f8e204caa77647aff6 Mon Sep 17 00:00:00 2001
+From b2c11c4bec7475bb9edd249ce7911a6ccd9e2d84 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sun, 19 Jan 2025 20:49:58 +0800
-Subject: [PATCH 6/6] zink: try to merge two VkSubmitInfo's for Imagination
+Subject: [PATCH 8/8] zink: try to merge two VkSubmitInfo's for Imagination
  Rogue
 
 The proprietary Vulkan driver for Imagination Rogue architecture GPUs
@@ -19,10 +19,10 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  3 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/src/gallium/drivers/zink/zink_batch.c b/src/gallium/drivers/zink/zink_batch.c
-index 4d8c18a24ee..5389d66dd46 100644
+index 137d94eb6fa..17f5a8f1491 100644
 --- a/src/gallium/drivers/zink/zink_batch.c
 +++ b/src/gallium/drivers/zink/zink_batch.c
-@@ -746,8 +746,15 @@ submit_queue(void *data, void *gdata, int thread_index)
+@@ -754,8 +754,15 @@ submit_queue(void *data, void *gdata, int thread_index)
        );
     }
  
@@ -40,10 +40,10 @@ index 4d8c18a24ee..5389d66dd46 100644
     simple_mtx_lock(&screen->queue_lock);
     VRAM_ALLOC_LOOP(result,
 diff --git a/src/gallium/drivers/zink/zink_screen.c b/src/gallium/drivers/zink/zink_screen.c
-index 68ae52eb832..10d7a7f2597 100644
+index ff80f99bfac..01a83b9455e 100644
 --- a/src/gallium/drivers/zink/zink_screen.c
 +++ b/src/gallium/drivers/zink/zink_screen.c
-@@ -2779,6 +2779,12 @@ init_driver_workarounds(struct zink_screen *screen)
+@@ -2802,6 +2802,12 @@ init_driver_workarounds(struct zink_screen *screen)
         screen->info.feats.features.geometryShader)
        screen->driver_workarounds.no_linesmooth = true;
  
@@ -57,7 +57,7 @@ index 68ae52eb832..10d7a7f2597 100644
      * gl_PointSize + glPolygonMode(..., GL_LINE), in the imagination
      * proprietary driver.
 diff --git a/src/gallium/drivers/zink/zink_types.h b/src/gallium/drivers/zink/zink_types.h
-index aa56ab8fdd5..2c7ad622138 100644
+index 37ba56aff14..0fe21de1adb 100644
 --- a/src/gallium/drivers/zink/zink_types.h
 +++ b/src/gallium/drivers/zink/zink_types.h
 @@ -1566,6 +1566,7 @@ struct zink_screen {

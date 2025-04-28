@@ -1,7 +1,7 @@
-From 8729be1acdf6741c8987ba5cc2d87ea4e2e5af80 Mon Sep 17 00:00:00 2001
+From 126bce4d4e2c26c8c7f46b7dcaeade07f7fbce4e Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 26 Nov 2024 10:50:10 +0800
-Subject: [PATCH 2/6] zink: use lazy descriptors for IMG proprietary drivers
+Subject: [PATCH 4/8] zink: use lazy descriptors for IMG proprietary drivers
 
 When using Zink with VK_EXT_descriptor_buffer enabled on IMG proprietary
 drivers, the rendering behavior is incorrect and uniforms are not
@@ -17,10 +17,10 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/src/gallium/drivers/zink/zink_screen.c b/src/gallium/drivers/zink/zink_screen.c
-index 49f2c8cdc66..4f00c5af3b1 100644
+index 870c4604200..115aaa56b21 100644
 --- a/src/gallium/drivers/zink/zink_screen.c
 +++ b/src/gallium/drivers/zink/zink_screen.c
-@@ -3494,11 +3494,16 @@ zink_internal_create_screen(const struct pipe_screen_config *config, int64_t dev
+@@ -3508,11 +3508,16 @@ zink_internal_create_screen(const struct pipe_screen_config *config, int64_t dev
        }
     }
     if (zink_descriptor_mode == ZINK_DESCRIPTOR_MODE_AUTO) {

@@ -1,7 +1,7 @@
-From 6eb8e4f80a4cba6f77286f3b8082e9a4a2fac15f Mon Sep 17 00:00:00 2001
+From 244dff7013705ea6c3431a4055740946828ce0bb Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 26 Nov 2024 10:46:55 +0800
-Subject: [PATCH 1/6] zink: emit consts as uint only on IMG proprietary drivers
+Subject: [PATCH 3/8] zink: emit consts as uint only on IMG proprietary drivers
 
 After the SPIR-V generator is optimized to generate multiple constant
 types, the shader compiler of Imagination proprietary drivers can no
@@ -20,10 +20,10 @@ Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/32342>
  4 files changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c b/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c
-index c30426aba83..72fc13c860e 100644
+index e59df2b9ce4..dd47946ebd2 100644
 --- a/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c
 +++ b/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c
-@@ -2224,7 +2224,10 @@ emit_load_const(struct ntv_context *ctx, nir_load_const_instr *load_const)
+@@ -2223,7 +2223,10 @@ emit_load_const(struct ntv_context *ctx, nir_load_const_instr *load_const)
           components[i] = spirv_builder_const_bool(&ctx->builder,
                                                    load_const->value[i].b);
     } else {
@@ -36,10 +36,10 @@ index c30426aba83..72fc13c860e 100644
           switch (atype) {
           case nir_type_uint: {
 diff --git a/src/gallium/drivers/zink/zink_compiler.c b/src/gallium/drivers/zink/zink_compiler.c
-index 3674f412062..ce7858e7c92 100644
+index fce8f51b7ea..9a882d277b9 100644
 --- a/src/gallium/drivers/zink/zink_compiler.c
 +++ b/src/gallium/drivers/zink/zink_compiler.c
-@@ -5374,6 +5374,7 @@ zink_shader_create(struct zink_screen *screen, struct nir_shader *nir)
+@@ -5383,6 +5383,7 @@ zink_shader_create(struct zink_screen *screen, struct nir_shader *nir)
  
     ret->sinfo.have_vulkan_memory_model = screen->info.have_KHR_vulkan_memory_model;
     ret->sinfo.have_workgroup_memory_explicit_layout = screen->info.have_KHR_workgroup_memory_explicit_layout;
@@ -48,10 +48,10 @@ index 3674f412062..ce7858e7c92 100644
        if (screen->info.props12.shaderDenormFlushToZeroFloat16)
           ret->sinfo.float_controls.flush_denorms |= 0x1;
 diff --git a/src/gallium/drivers/zink/zink_screen.c b/src/gallium/drivers/zink/zink_screen.c
-index 1f06a606b66..49f2c8cdc66 100644
+index 67586eb2a85..870c4604200 100644
 --- a/src/gallium/drivers/zink/zink_screen.c
 +++ b/src/gallium/drivers/zink/zink_screen.c
-@@ -2856,6 +2856,16 @@ init_driver_workarounds(struct zink_screen *screen)
+@@ -2879,6 +2879,16 @@ init_driver_workarounds(struct zink_screen *screen)
        break;
     }
  
@@ -69,7 +69,7 @@ index 1f06a606b66..49f2c8cdc66 100644
     screen->driver_workarounds.lower_robustImageAccess2 =
        !screen->info.rb2_feats.robustImageAccess2 &&
 diff --git a/src/gallium/drivers/zink/zink_types.h b/src/gallium/drivers/zink/zink_types.h
-index 41eaa21215c..83b5b44462d 100644
+index ba4aea002e8..466691e701c 100644
 --- a/src/gallium/drivers/zink/zink_types.h
 +++ b/src/gallium/drivers/zink/zink_types.h
 @@ -775,6 +775,7 @@ struct zink_shader_info {

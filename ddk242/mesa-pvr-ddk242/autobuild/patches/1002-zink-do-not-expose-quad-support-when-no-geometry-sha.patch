@@ -1,0 +1,33 @@
+From 7fd31f68a553ccecb5d544f90d4cf90b200bde89 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Mon, 12 Aug 2024 11:20:27 +0800
+Subject: [PATCH 2/8] zink: do not expose quad support when no geometry shader
+
+The emulation of quads implemented in Zink utilizes geometry shaders,
+but currently the enablement of it is only guarded by the support of
+triangle strips.
+
+Add geometry shaders to the condition to enable it either too.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30608>
+---
+ src/gallium/drivers/zink/zink_screen.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/gallium/drivers/zink/zink_screen.c b/src/gallium/drivers/zink/zink_screen.c
+index 0362d53de5e..67586eb2a85 100644
+--- a/src/gallium/drivers/zink/zink_screen.c
++++ b/src/gallium/drivers/zink/zink_screen.c
+@@ -562,6 +562,8 @@ zink_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    }
+    case PIPE_CAP_SUPPORTED_PRIM_MODES: {
+       uint32_t modes = BITFIELD_MASK(MESA_PRIM_COUNT);
++      if (!screen->have_triangle_fans || !screen->info.feats.features.geometryShader)
++        modes &= ~BITFIELD_BIT(MESA_PRIM_QUADS);
+       modes &= ~BITFIELD_BIT(MESA_PRIM_QUAD_STRIP);
+       modes &= ~BITFIELD_BIT(MESA_PRIM_POLYGON);
+       modes &= ~BITFIELD_BIT(MESA_PRIM_LINE_LOOP);
+-- 
+2.49.0
+

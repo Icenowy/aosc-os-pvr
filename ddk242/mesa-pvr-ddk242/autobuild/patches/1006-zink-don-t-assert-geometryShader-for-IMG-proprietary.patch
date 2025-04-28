@@ -1,7 +1,7 @@
-From d0400090efcaa5c1972d9a4d4839030cd36302a8 Mon Sep 17 00:00:00 2001
+From 784686b1534a6ecd3059c514dea405c2288e3de1 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sat, 30 Nov 2024 17:11:09 +0800
-Subject: [PATCH 4/6] zink: don't assert geometryShader for IMG proprietary
+Subject: [PATCH 6/8] zink: don't assert geometryShader for IMG proprietary
  driver
 
 The proprietary driver for Imagination Rogue-architecture GPUs does not
@@ -15,10 +15,10 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/src/gallium/drivers/zink/zink_screen.c b/src/gallium/drivers/zink/zink_screen.c
-index 97f2b9e8d74..68ae52eb832 100644
+index 160f394f9ad..ff80f99bfac 100644
 --- a/src/gallium/drivers/zink/zink_screen.c
 +++ b/src/gallium/drivers/zink/zink_screen.c
-@@ -2775,10 +2775,9 @@ init_driver_workarounds(struct zink_screen *screen)
+@@ -2798,10 +2798,9 @@ init_driver_workarounds(struct zink_screen *screen)
     }
  
     if (screen->info.driver_props.driverID ==
