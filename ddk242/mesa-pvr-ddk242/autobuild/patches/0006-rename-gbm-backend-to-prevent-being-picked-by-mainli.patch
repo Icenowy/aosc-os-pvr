@@ -1,0 +1,64 @@
+From 5b9880adfd4f029d3b48d1ad88655868ebaca82e Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Mon, 26 May 2025 15:36:01 +0800
+Subject: [PATCH 2/2] rename gbm backend to prevent being picked by mainline
+ mesa
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ src/egl/drivers/dri2/platform_drm.c | 2 +-
+ src/gbm/backends/dri/gbm_dri.c      | 4 ++--
+ src/gbm/main/backend.c              | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/egl/drivers/dri2/platform_drm.c b/src/egl/drivers/dri2/platform_drm.c
+index 9848e431776..38fe1bd0650 100644
+--- a/src/egl/drivers/dri2/platform_drm.c
++++ b/src/egl/drivers/dri2/platform_drm.c
+@@ -732,7 +732,7 @@ dri2_initialize_drm(_EGLDisplay *disp)
+       dri2_dpy->fd_render_gpu = dri2_dpy->fd_display_gpu;
+    }
+ 
+-   if (strcmp(gbm_device_get_backend_name(gbm), "drm") != 0) {
++   if (strcmp(gbm_device_get_backend_name(gbm), "pvr") != 0) {
+       err = "DRI2: gbm device using incorrect/incompatible backend";
+       goto cleanup;
+    }
+diff --git a/src/gbm/backends/dri/gbm_dri.c b/src/gbm/backends/dri/gbm_dri.c
+index ef35951c0bf..da317e9372e 100644
+--- a/src/gbm/backends/dri/gbm_dri.c
++++ b/src/gbm/backends/dri/gbm_dri.c
+@@ -1326,7 +1326,7 @@ dri_device_create(int fd, uint32_t gbm_backend_version)
+    dri->base.v0.surface_create = gbm_dri_surface_create;
+    dri->base.v0.surface_destroy = gbm_dri_surface_destroy;
+ 
+-   dri->base.v0.name = "drm";
++   dri->base.v0.name = "pvr";
+ 
+    dri->visual_table = gbm_dri_visuals_table;
+    dri->num_visuals = ARRAY_SIZE(gbm_dri_visuals_table);
+@@ -1358,7 +1358,7 @@ err_dri:
+ 
+ struct gbm_backend gbm_dri_backend = {
+    .v0.backend_version = GBM_BACKEND_ABI_VERSION,
+-   .v0.backend_name = "dri",
++   .v0.backend_name = "pvr",
+    .v0.create_device = dri_device_create,
+ };
+ 
+diff --git a/src/gbm/main/backend.c b/src/gbm/main/backend.c
+index feee0703495..b6372bc35ef 100644
+--- a/src/gbm/main/backend.c
++++ b/src/gbm/main/backend.c
+@@ -54,7 +54,7 @@ struct gbm_backend_desc {
+ 
+ static const struct gbm_backend_desc builtin_backends[] = {
+ #if defined(HAVE_DRI) || defined(HAVE_DRI2) || defined(HAVE_DRI3)
+-   { "dri", &gbm_dri_backend },
++   { "pvr", &gbm_dri_backend },
+ #endif
+ };
+ 
+-- 
+2.51.0
+
