@@ -1,0 +1,28 @@
+From 19e4ef3808dfd9f6b13e076dfc85ccbb4fa5ae58 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Tue, 18 Nov 2025 22:16:36 +0800
+Subject: [PATCH 20/20] HACK: pretend to be llvmpipe to xfwm4
+
+The usage of GLX of xfwm4 is quirky and not well supported by Zink + IMG
+proprietary Vulkan driver.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ src/util/00-mesa-defaults.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/util/00-mesa-defaults.conf b/src/util/00-mesa-defaults.conf
+index ba42e550260..a181a282218 100644
+--- a/src/util/00-mesa-defaults.conf
++++ b/src/util/00-mesa-defaults.conf
+@@ -774,6 +774,7 @@ TODO: document the other workarounds.
+         </application>
+         <application name="xfwm4" executable="xfwm4">
+             <option name="adaptive_sync" value="false" />
++            <option name="force_gl_renderer" value="llvmpipe"/>
+         </application>
+         <application name="Enlightenment" executable="enlightenment">
+             <option name="adaptive_sync" value="false" />
+-- 
+2.51.1
+

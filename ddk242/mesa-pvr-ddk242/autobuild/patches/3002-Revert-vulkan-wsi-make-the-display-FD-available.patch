@@ -1,7 +1,7 @@
-From 6d5541e01fb36dc11dfd9f2e9993c207af0249b0 Mon Sep 17 00:00:00 2001
+From f6e5dd0fcad7dcc043e4606045e610b1f08bc257 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sat, 17 May 2025 13:22:25 +0800
-Subject: [PATCH 2/2] Revert "vulkan/wsi: make the display FD available"
+Subject: [PATCH 18/20] Revert "vulkan/wsi: make the display FD available"
 
 This reverts commit c10d00d1ef1037509622950619af9febcddf50c1.
 
@@ -748,5 +748,5 @@ index 07a80458a7c..11468424f2b 100644
  }
  
 -- 
-2.49.0
+2.51.1
 

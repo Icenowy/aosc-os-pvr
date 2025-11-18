@@ -1,7 +1,7 @@
-From 9fce9e376b6127e75c6a380ebaf333d9fd7d6ca6 Mon Sep 17 00:00:00 2001
+From 13265e56d71d31e09f001da75363a1ff5cc60118 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
-Date: Mon, 28 Apr 2025 22:27:13 +0800
-Subject: [PATCH] HACK: glxext: default to Zink
+Date: Mon, 14 Apr 2025 15:01:20 +0800
+Subject: [PATCH 19/20] HACK: prefer zink for glx
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/glx/glxext.c b/src/glx/glxext.c
-index 72d19a14212..000a719838b 100644
+index 6cf04d1b745..cb77857cc10 100644
 --- a/src/glx/glxext.c
 +++ b/src/glx/glxext.c
 @@ -885,7 +885,7 @@ __glXInitialize(Display * dpy)
@@ -22,5 +22,5 @@ index 72d19a14212..000a719838b 100644
  
     dpyPriv->drawHash = __glxHashCreate();
 -- 
-2.49.0
+2.51.1
 

@@ -1,7 +1,7 @@
-From 5b9880adfd4f029d3b48d1ad88655868ebaca82e Mon Sep 17 00:00:00 2001
+From ccf061b1cdb165baf5e6942f7e30e24d438b5ea0 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Mon, 26 May 2025 15:36:01 +0800
-Subject: [PATCH 2/2] rename gbm backend to prevent being picked by mainline
+Subject: [PATCH 05/20] rename gbm backend to prevent being picked by mainline
  mesa
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
@@ -60,5 +60,5 @@ index feee0703495..b6372bc35ef 100644
  };
  
 -- 
-2.51.0
+2.51.1
 

@@ -1,7 +1,7 @@
-From 1fba42d7385f3f0ea9da2ac124b4c08ece34cf11 Mon Sep 17 00:00:00 2001
+From 34319ae789954cad2230b9e84e1b5686d7f17a24 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Dec 2024 13:41:30 +0800
-Subject: [PATCH 2/6] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
+Subject: [PATCH 02/20] change LIBGL_ALWAYS_SOFTWARE to PVRGL_ALWAYS_SOFTWARE
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -40,5 +40,5 @@ index c0e6197a500..7be4c142538 100644
        const char *env = getenv("MESA_LOADER_DRIVER_OVERRIDE");
        disp->Options.Zink = env && !strcmp(env, "zink");
 -- 
-2.49.0
+2.51.1
 

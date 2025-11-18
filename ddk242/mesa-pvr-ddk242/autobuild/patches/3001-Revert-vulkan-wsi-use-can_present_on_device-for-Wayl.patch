@@ -1,7 +1,7 @@
-From c7436760edf18a59c7454d59c018d08fcd65a177 Mon Sep 17 00:00:00 2001
+From 223cf7e77d78bef0704b0de16c63812c54c62f54 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sat, 17 May 2025 13:21:02 +0800
-Subject: [PATCH 1/2] Revert "vulkan/wsi: use can_present_on_device for
+Subject: [PATCH 17/20] Revert "vulkan/wsi: use can_present_on_device for
  Wayland"
 
 This reverts commit e44ac931318e75a0f3fc4ce8975ab94abaadbd47.
@@ -30,5 +30,5 @@ index 901b4d977fa..c8cf23df933 100644
               * device node but the primary, so test against both.
               */
 -- 
-2.49.0
+2.51.1
 
