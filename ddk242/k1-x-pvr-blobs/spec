@@ -1,3 +1,4 @@
-VER=24.2.6603887+bianbu2.0.4
-SRCS="git::commit=tags/v2.0.4::https://gitee.com/bianbu-linux/img-gpu-powervr.git"
-CHKSUMS="SKIP"
+BBREV=10
+VER=24.2.6603887+bianbu${BBREV}
+SRCS="file::rename=img-gpu-powervr.deb::https://archive.spacemit.com/bianbu/pool/main/i/img-gpu-powervr/img-gpu-powervr_24.2-6603887bb${BBREV}_all.deb"
+CHKSUMS="sha256::4cb61ea3173bb3fb4aae86ba3f874730f08d4c1f7524b1a87baedfd316915ea7"

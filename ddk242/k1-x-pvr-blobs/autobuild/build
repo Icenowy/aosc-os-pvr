@@ -1,3 +1,6 @@
+abinfo "Unpacking the bianbu package ..."
+dpkg -x "$SRCDIR"/img-gpu-powervr.deb "$SRCDIR"/unpack
+
 abinfo "Creating directory skeleton ..."
 mkdir -pv "$PKGDIR"/usr/{lib,share} "$PKGDIR"/etc
 
@@ -6,12 +9,12 @@ for i in libGLESv1_CM_PVR_MESA libGLESv2_PVR_MESA libglslcompiler \
          libpvr_dri_support libPVROCL libPVRScopeServices libsrv_um \
          libsutu_display libufwriter libusc libVK_IMG
 do
-	cp -v "$SRCDIR"/target/usr/lib/${i}.so "$PKGDIR"/usr/lib/
+	cp -v "$SRCDIR"/unpack/usr/lib/${i}.so "$PKGDIR"/usr/lib/
 done
 
 abinfo "Copying auxillary files ..."
-cp -rv "$SRCDIR"/target/lib/firmware/ "$PKGDIR"/usr/lib/
-cp -rv "$SRCDIR"/target/etc/vulkan/ "$PKGDIR"/usr/share/
+cp -rv "$SRCDIR"/unpack/lib/firmware/ "$PKGDIR"/usr/lib/
+cp -rv "$SRCDIR"/unpack/etc/vulkan/ "$PKGDIR"/usr/share/
 mv -v "$PKGDIR"/usr/share/vulkan/icd.d/{powervr_icd,pvr}.json
 
 abinfo "Fixing permissions ..."
